@@ -399,10 +399,9 @@ about where it helps and where it does not.
 - **Anything a device must confirm.** Audio latency, MIDI timing, and hardware behavior are
   verified on real phones — including deliberately old ones — not accepted from a model or a
   green test run.
-- **Security-relevant code.** Reviewed manually. *(This showcase repo itself was produced by an
-  AI-assisted audit that found a live payment credential committed to the private repo's
-  history in 2023. The finding was real and actionable — and it still needed a human to
-  verify it and rotate the key.)*
+- **Security-relevant code.** Reviewed manually, always. A model is good at spotting a
+  pattern that *looks* wrong; judging whether it is actually exploitable, and what the right
+  remediation is, is not something I delegate.
 
 **The pattern I would bring to a team:** treat the model as a fast, tireless colleague with no
 accountability. Excellent for breadth, recall, and first drafts. Never the final word on

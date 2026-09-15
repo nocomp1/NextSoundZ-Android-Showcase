@@ -60,23 +60,22 @@ any amount of code review.
 
 **Keep it away from the merge button.** It drafts; I review, run, and take responsibility.
 
-## A worked example: this repository
+## A worked example: auditing a large codebase
 
-This showcase was produced by an AI-assisted audit of the private repository. The audit
-swept the working tree and git history for credential patterns and found:
+The strongest use I have found is systematic sweeps over a surface too large to review by
+hand. A 37-module repository with 1,593 commits has more corners than I can hold in my head,
+and the things that hide in those corners — an inconsistent pattern, a dependency that should
+not be there, a file that is tracked when everyone assumes it is ignored — are exactly the
+kind of thing a tireless reader finds and a busy one walks past.
 
-- a **live payment provider secret key** committed in 2023 and still present at HEAD, in a
-  file that `.gitignore` listed — which does nothing for an already-tracked file;
-- **release keystore passwords** in a committed `gradle.properties`;
-- a **TLS hostname verifier returning `true` unconditionally**, disabling certificate
-  validation.
+What makes it work is that the output is *verifiable*. A sweep produces a list of specific
+files and lines. Each one is either a real problem or it is not, and checking takes seconds.
+That is a very different proposition from asking a model to reason about behaviour, where a
+confident wrong answer looks identical to a right one.
 
-Three real findings, in a codebase I know well, that I had walked past for years. That is a
-genuine demonstration of value: tireless, systematic breadth over a large surface.
-
-And every one of them still needed a human to confirm it was real, judge the severity, and
-do the part that actually mattered — rotating the keys. The tool found them. It could not
-have fixed them, and it would have been dangerous to let it try.
+So the division holds: the tool is excellent at **finding candidates** across breadth I could
+not cover manually. Deciding which candidates are real, how serious they are, and what to do
+about them stays with me — and for anything security-related, the fix does too.
 
 ## The summary I would give a team
 
