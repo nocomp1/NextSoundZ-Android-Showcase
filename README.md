@@ -144,7 +144,7 @@ the kind of thing that only shows up in a real app under real gestures.
 
 ## Java-to-Kotlin modernization
 
-The project began as Java and is now **98.3% Kotlin by file count** (1,137 Kotlin files vs. 38
+The project began as Java and is now **96.8% Kotlin by file count** (1,137 Kotlin files vs. 38
 Java files remaining, and most of the remainder is one deliberately-quarantined subsystem).
 
 My approach was not a bulk auto-convert:

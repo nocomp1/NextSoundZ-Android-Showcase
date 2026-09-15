@@ -1,6 +1,6 @@
 # Java-to-Kotlin modernization
 
-The production codebase is **1,137 Kotlin files to 38 Java files** — 98.3% Kotlin by file
+The production codebase is **1,137 Kotlin files to 38 Java files** — 96.8% Kotlin by file
 count. It did not start that way.
 
 ## The approach
