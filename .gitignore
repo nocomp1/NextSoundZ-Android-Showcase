@@ -1,0 +1,32 @@
+# This repository contains no build system and no secrets. These entries exist so that
+# nothing sensitive can be added casually later.
+
+# Secrets — never commit, in any form
+*.jks
+*.keystore
+*.p12
+*.pem
+*.p8
+.env
+.env.*
+secrets.xml
+google-services.json
+service-account*.json
+local.properties
+gradle.properties
+
+# Build output
+build/
+.gradle/
+.cxx/
+*.apk
+*.aab
+*.so
+*.a
+*.o
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
