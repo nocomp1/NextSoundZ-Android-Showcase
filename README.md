@@ -1,5 +1,13 @@
 # NextSoundZ — Android Engineering Showcase
 
+<img width="526" height="243" alt="unnamed (1)" src="https://github.com/user-attachments/assets/c8e57ed8-66a8-4ef1-850f-2f0b42ba45e2" />
+
+
+<img width="526" height="243" alt="unnamed (2)" src="https://github.com/user-attachments/assets/3803faf3-f88d-457e-95d6-d5dca02a1033" />
+<img width="526" height="243" alt="unnamed (3)" src="https://github.com/user-attachments/assets/41f2e1ae-9e5a-4910-82e2-6b03cdfc5874" />
+
+
+
 **A sanitized, public look at the engineering behind [NextSoundZ](https://nextsoundz.com) — a
 production music-production studio (DAW) for Android, shipping on Google Play.**
 
