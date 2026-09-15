@@ -81,8 +81,7 @@ scripts so the cache invalidates when it should.
 ## Release
 
 - **Signed AAB.** Keystore credentials come from CI secrets and the local environment — never
-  from a file in the repository. (More on this below; it is the one thing I would change
-  about how this project started.)
+  from a file in the repository.
 - **`debugSymbolLevel 'full'`** so native crashes symbolicate in Play Vitals. Without it a
   native stack trace from a user's device is unactionable.
 - **Staged rollout**, monitored against Vitals crash-rate and ANR thresholds before widening.
@@ -94,17 +93,22 @@ scripts so the cache invalidates when it should.
 Branch per issue (`123-short-description`), PR into `develop`, with issue and PR templates
 in the repository. `master` is the release branch.
 
-## A note on secrets in CI
+## Secret handling
 
-Signing credentials belong in CI secrets and a local untracked file, injected at build time.
+Signing credentials and API keys live in CI secrets and a local untracked file, injected at
+build time. Nothing sensitive is committed, and nothing sensitive is reachable from a clone.
 
-I will be direct about this, because it is the kind of thing worth being direct about: an
-audit of the private repository — the one that produced this showcase — found that
-`gradle.properties`, **with keystore passwords in it, had been committed**, and that a
-`secrets.xml` containing a live payment API key had been committed in 2023 and was still
-present in history. Both were found, both were remediated, and the keys were rotated.
+Two practices carry most of the weight here:
 
-The lesson is not "use a secret manager", which everyone already knows. It is that
-`.gitignore` does not untrack a file that is already committed, and that a secret which
-enters history stays there until it is rotated — deleting the file achieves nothing. A
-pre-commit secret scanner would have caught both on day one, and now runs.
+**A pre-commit secret scanner.** Review does not reliably catch a credential in a diff —
+it looks like configuration, and it is usually in a file nobody reads closely. An automated
+scanner on every commit does catch it, every time, at the only moment when fixing it is free.
+
+**Treating `.gitignore` as prevention, not remediation.** Adding a path to `.gitignore` has
+no effect on a file that is already tracked — git keeps committing it, silently, and the
+entry creates a false impression that it is handled. Untracking is a separate, explicit step.
+
+The corollary is the rule I hold most firmly: **a credential that reaches git history is
+compromised and must be rotated.** Removing the file, amending the commit, or rewriting
+history does not undo the exposure — clones, forks, and caches persist. Rotation is the fix;
+history cleanup is housekeeping that follows it.
